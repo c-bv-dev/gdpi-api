@@ -1,2 +1,7 @@
 node_modules
+apidoc
 .env
+.env*.local
+.env.dev
+.env.prod
+.gitignore
