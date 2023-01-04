@@ -1,10 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
+import express from 'express';
+import cors from 'cors';
+import { Request, Response, NextFunction } from 'express';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
         'Access-Control-Allow-Headers',
@@ -19,13 +19,13 @@ app.use((req, res, next) => {
 app.use(cors());
 
 // ROUTES
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
     res.status(200).send('API is online');
 });
 
-// app.use(require('./routes/users'));
+app.use('/auth', require('./routes/auth'));
 
-app.use('*', (req, res) => {
+app.use('*', (req: Request, res: Response) => {
     res.status(404).send('Route not found');
 });
 
