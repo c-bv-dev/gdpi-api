@@ -1,7 +1,16 @@
+# Dependencies
 node_modules
-apidoc
-.env
-.env*.local
-.env.dev
-.env.prod
-.gitignore
+
+# yarn error logs
+yarn-error.log
+
+# Environment varibales
+.env*
+!.env*.example
+
+# Logs
+logs/*
+!logs/.gitkeep
+
+# Runtime data
+.vscode/*
