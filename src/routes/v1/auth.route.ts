@@ -1,11 +1,11 @@
-import { authController } from '@controllers';
+// import { authController } from '@controllers';
 import asyncRouter from '@utils/asyncRouter';
 import express from 'express';
 
 const router = asyncRouter(express.Router());
 
-router.post('/register', authController.register);
-router.post('/login', authController.login);
+// router.post('/register', authController.register);
+// router.post('/login', authController.login);
 // router.post('/logout', validate(authValidation.logout), authController.logout);
 // router.post('/refresh-tokens', validate(authValidation.refreshTokens), authController.refreshTokens);
 // router.post('/forgot-password', validate(authValidation.forgotPassword), authController.forgotPassword);

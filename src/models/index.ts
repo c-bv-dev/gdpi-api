@@ -1,2 +1,9 @@
-export { default as UserSchema } from './user.model';
-// export { default as TokenSchema } from './token.model';
+import sequelize from '@/config/db';
+import User from './user.model';
+
+let db: any = {};
+db.user = User;
+
+db.sequelize = sequelize;
+
+export default db;

@@ -1,10 +1,8 @@
-import database from '../src/config/db';
+import db from '@models';
 
 const sync = async () => {
     try {
-        await database.sync({ alter: true })
-        console.log('Database synced')
-
+        await db.sequelize.sync({ force: true });
     } catch (error) {
         console.error(error)
     };
