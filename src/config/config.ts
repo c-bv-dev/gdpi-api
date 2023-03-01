@@ -17,7 +17,7 @@ const config = {
         port: process.env.DB_PORT || 27017,
         name: process.env.DB_NAME || 'api',
         user: process.env.DB_USER || '',
-        pass: process.env.DB_PASS || '',
+        pass: process.env.DB_PASSWORD || '',
         uri: process.env.DB_URI || ''
     },
     jwt: {
