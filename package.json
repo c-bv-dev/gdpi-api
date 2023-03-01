@@ -22,7 +22,6 @@
         "express-winston": "^4.2.0",
         "http-status": "^1.6.2",
         "jsonwebtoken": "^9.0.0",
-        "mongoose": "^7.0.0",
         "node-fetch": "^3.3.0",
         "pg": "^8.9.0",
         "pg-hstore": "^2.3.4",
