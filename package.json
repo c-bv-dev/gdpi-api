@@ -6,7 +6,8 @@
     "main": "src/index.ts",
     "scripts": {
         "start": "node dist/index.js",
-        "dev": "export NODE_ENV=development && nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
+        "dev": "export NODE_ENV=development && nodemon src/index.ts",
+        "sync": "export NODE_ENV=development && nodemon --exec ts-node && node bin/sync.js",
         "build": "tsc",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -21,8 +22,11 @@
         "express-winston": "^4.2.0",
         "http-status": "^1.6.2",
         "jsonwebtoken": "^9.0.0",
-        "mongoose": "^6.9.0",
+        "mongoose": "^7.0.0",
         "node-fetch": "^3.3.0",
+        "pg": "^8.9.0",
+        "pg-hstore": "^2.3.4",
+        "sequelize": "^6.29.0",
         "winston": "^3.8.2"
     },
     "devDependencies": {
