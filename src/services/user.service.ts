@@ -1,8 +1,4 @@
-// import { IUserDocument } from '@/models/user.model';
-// import { IUser } from '@custom-types/custom-types';
-// import User from '@/models/user.model';
-// import ApiError from '@utils/ApiError';
-// import httpStatus from 'http-status';
+import User, { IUserModel } from '@/models/user.model';
 
 // const createUser = async (userData: IUser) => {
 //     if (await User.isEmailTaken(userData.email as string)) {
@@ -11,9 +7,13 @@
 //     return User.create(userData);
 // };
 
-// const getUserByEmail = async (email: string): Promise<IUser | null> => {
-//     return await User.findOne({ email });
-// };
+const getUserByEmail = async (email: string): Promise<IUserModel | null> => {
+    return await User.findOne({ where: { email } });
+};
+
+const getUserByEmailWithPassword = async (email: string): Promise<IUserModel | null> => {
+    return await User.scope('withPassword').findOne({ where: { email } });
+};
 
 // const queryUsers = async (filter: object, options: object): Promise<IUser[]> => {
 //     return await User.find(filter, null, options);
@@ -45,11 +45,12 @@
 //     return;
 // };
 
-// export default {
-//     createUser,
-//     getUserById,
-//     getUserByEmail,
-//     queryUsers,
-//     updateUserById,
-//     deleteUserById
-// };
+export default {
+    // createUser,
+    // getUserById,
+    getUserByEmail,
+    getUserByEmailWithPassword,
+    // queryUsers,
+    // updateUserById,
+    // deleteUserById
+};

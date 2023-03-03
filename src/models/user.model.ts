@@ -3,7 +3,7 @@ import { IRole } from '@custom-types/custom-types';
 import bcrypt from 'bcrypt';
 import { DataTypes, Model } from 'sequelize';
 
-interface IUserAttributes {
+export interface IUserAttributes {
     firstName: string;
     lastName: string;
     email: string;
@@ -11,8 +11,9 @@ interface IUserAttributes {
     role: IRole;
 };
 
-interface IUserModel extends Model<IUserAttributes> {
+export interface IUserModel extends Model<IUserAttributes> {
     checkPassword: (password: string) => Promise<boolean>;
+    noPassword: () => IUserAttributes;
 };
 
 const User = sequelize.define<IUserModel>('User', {
@@ -21,7 +22,10 @@ const User = sequelize.define<IUserModel>('User', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: {
+            name: 'email',
+            msg: 'Email address already in use!'
+        },
         validate: {
             isEmail: true
         }
@@ -30,7 +34,7 @@ const User = sequelize.define<IUserModel>('User', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            len: [6, 50]
+            len: [6, 128]
         },
         set(value: string): void {
             const salt: string = bcrypt.genSaltSync(10);
@@ -38,13 +42,38 @@ const User = sequelize.define<IUserModel>('User', {
             this.setDataValue('password', hash);
         }
     },
-    role: { type: DataTypes.ENUM<IRole>('user', 'admin'), defaultValue: 'user' }
+    role: {
+        type: DataTypes.ENUM<IRole>('user', 'admin'),
+        defaultValue: 'user'
+    }
 }, {
-    timestamps: true
+    timestamps: true,
+    defaultScope: {
+        attributes: {
+            exclude: ['password', 'createdAt', 'updatedAt']
+        }
+    },
+    scopes: {
+        withPassword: {
+            attributes: {
+                include: ['password'],
+                exclude: ['createdAt', 'updatedAt']
+            }
+        },
+        withTimestamps: {
+            attributes: {
+                include: ['createdAt', 'updatedAt']
+            }
+        }
+    }
 });
 
 User.prototype.checkPassword = async function (password: string): Promise<boolean> {
     return await bcrypt.compare(password, this.password);
+};
+
+User.prototype.noPassword = function (): IUserAttributes {
+    return { ...this.get(), password: undefined };
 };
 
 export default User;
