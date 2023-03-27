@@ -19,9 +19,9 @@ const getUserByEmailWithPassword = async (email: string): Promise<IUserModel | n
 //     return await User.find(filter, null, options);
 // };
 
-// const getUserById = async (id: string): Promise<IUserDocument | null> => {
-//     return await User.findById(id);
-// };
+const getUserById = async (id: string): Promise<IUserModel | null> => {
+    return await User.findByPk(id);
+};
 
 // const updateUserById = async (id: string, updateBody: IUser): Promise<IUserDocument | null> => {
 //     const user = await getUserById(id);
@@ -47,7 +47,7 @@ const getUserByEmailWithPassword = async (email: string): Promise<IUserModel | n
 
 export default {
     // createUser,
-    // getUserById,
+    getUserById,
     getUserByEmail,
     getUserByEmailWithPassword,
     // queryUsers,

@@ -1,4 +1,4 @@
-// import { userController } from '@controllers';
+import { userController } from '@controllers';
 import asyncRouter from '@utils/asyncRouter';
 import express from 'express';
 
@@ -8,9 +8,9 @@ const router = asyncRouter(express.Router());
 //     .get(userController.getUsers)
 //     .post(userController.createUser)
 
-// router
-//     .route('/:id')
-//     .get(userController.getUser)
+router
+    .route('/:id')
+    .get(userController.getUser)
 //     .put(userController.updateUser)
 //     .delete(userController.deleteUser);
 
