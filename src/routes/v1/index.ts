@@ -3,6 +3,7 @@ import config from '@config/config';
 import authRoute from './auth.route';
 import docsRoute from './docs.route';
 import userRoute from './user.route';
+import companyRoute from './company.route';
 
 const router = express.Router();
 
@@ -14,6 +15,10 @@ const defaultRoutes = [
     {
         path: '/user',
         route: userRoute
+    },
+    {
+        path: '/company',
+        route: companyRoute
     }
 ];
 
