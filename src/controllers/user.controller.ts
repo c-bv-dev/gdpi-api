@@ -5,17 +5,16 @@ import pick from '@utils/pick';
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
-// const createUser = async (req: Request, res: Response) => {
-//     const user = await userService.createUser(req.body);
-//     res.status(httpStatus.CREATED).send(user);
-// };
+const createUser = async (req: Request, res: Response) => {
+    const user = await userService.createUser(req.body);
+    res.status(httpStatus.CREATED).send(user);
+};
 
-// const getUsers = async (req: Request, res: Response) => {
-//     const filter = pick(req.query, ['firstName', 'lastName', 'email']);
-//     const options = pick(req.query, ['sortBy', 'limit', 'page']);
-//     const result = await userService.queryUsers(filter, options);
-//     res.send(result);
-// };
+const getUsers = async (req: Request, res: Response) => {
+    const filter = pick(req.query, ['firstName', 'lastName', 'email']);
+    const users = await userService.queryUsers(filter);
+    res.send(users);
+};
 
 const getUser = async (req: IRequest, res: Response) => {
     const user = await userService.getUserById(req.params.id);
@@ -23,20 +22,20 @@ const getUser = async (req: IRequest, res: Response) => {
     res.send(user);
 };
 
-// const updateUser = async (req: IRequest, res: Response) => {
-//     const user = await userService.updateUserById(req.params.id, req.body);
-//     res.send(user);
-// };
+const updateUser = async (req: IRequest, res: Response) => {
+    const user = await userService.updateUserById(req.params.id, req.body);
+    res.send(user);
+};
 
-// const deleteUser = async (req: IRequest, res: Response) => {
-//     await userService.deleteUserById(req.params.id);
-//     res.status(httpStatus.NO_CONTENT).send();
-// };
+const deleteUser = async (req: IRequest, res: Response) => {
+    await userService.deleteUserById(req.params.id);
+    res.status(httpStatus.OK).send();
+};
 
 export default {
-    // createUser,
-    // getUsers,
+    createUser,
+    getUsers,
     getUser,
-    // updateUser,
-    // deleteUser
+    updateUser,
+    deleteUser
 };

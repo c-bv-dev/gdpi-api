@@ -11,7 +11,7 @@ export interface IUserAttributes {
     role: IRole;
 };
 
-export interface IUserModel extends Model<IUserAttributes> {
+export interface IUserModel extends Model<IUserAttributes>, IUserAttributes {
     checkPassword: (password: string) => Promise<boolean>;
     noPassword: () => IUserAttributes;
 };
