@@ -1,23 +1,26 @@
 import sequelize from '@/config/db';
 import { DataTypes, Model } from 'sequelize';
 
-export interface IAssetsAttributes {
-    name: string;
-    description: string;
+export interface IAssetAttributes {
+    type: string;
+    brand: string;
+    model: string;
     serialNumber: string;
-    assetNumber: string;
-    purchaseDate: Date;
-    purchasePrice: number;
+    idNumber: string;
 };
 
-export interface IAssetsModel extends Model<IAssetsAttributes>, IAssetsAttributes { };
+export interface IAssetModel extends Model<IAssetAttributes>, IAssetAttributes { };
 
-const Assets = sequelize.define<IAssetsModel>('Assets', {
-    name: {
+const Asset = sequelize.define<IAssetModel>('Asset', {
+    type: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    description: {
+    brand: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    model: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -25,16 +28,8 @@ const Assets = sequelize.define<IAssetsModel>('Assets', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    assetNumber: {
+    idNumber: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    purchaseDate: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    purchasePrice: {
-        type: DataTypes.DECIMAL(10, 2),
         allowNull: false
     }
 }, {
@@ -53,4 +48,4 @@ const Assets = sequelize.define<IAssetsModel>('Assets', {
     }
 });
 
-export default Assets;
+export default Asset;

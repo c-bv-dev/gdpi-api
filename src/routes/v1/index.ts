@@ -1,9 +1,9 @@
-import express from 'express';
 import config from '@config/config';
+import express from 'express';
 import authRoute from './auth.route';
+import consumerRoute from './consumer.route';
 import docsRoute from './docs.route';
 import userRoute from './user.route';
-import companyRoute from './company.route';
 
 const router = express.Router();
 
@@ -17,8 +17,8 @@ const defaultRoutes = [
         route: userRoute
     },
     {
-        path: '/company',
-        route: companyRoute
+        path: '/consumer',
+        route: consumerRoute
     }
 ];
 

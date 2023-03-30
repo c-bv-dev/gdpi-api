@@ -1,8 +1,8 @@
 import db from '@/models';
-import Company from '@/models/company.model';
+import Consumer from '@/models/consumer.model';
 
 const getCompanies = async (filter: any) => {
-    return await Company.findByPk(1, {
+    return await Consumer.findByPk(1, {
         include: [db.Assets],
     });
 };

@@ -1,5 +1,5 @@
 import sequelize from '@/config/db';
-import { IRole } from '@custom-types/custom-types';
+import { IRole, ILevel } from '@custom-types/custom-types';
 import bcrypt from 'bcrypt';
 import { DataTypes, Model } from 'sequelize';
 
@@ -9,6 +9,7 @@ export interface IUserAttributes {
     email: string;
     password: string;
     role: IRole;
+    level: ILevel;
 };
 
 export interface IUserModel extends Model<IUserAttributes>, IUserAttributes {
@@ -45,6 +46,10 @@ const User = sequelize.define<IUserModel>('User', {
     role: {
         type: DataTypes.ENUM<IRole>('user', 'admin'),
         defaultValue: 'user'
+    },
+    level: {
+        type: DataTypes.ENUM<ILevel>('1', '2', '3'),
+        defaultValue: 1
     }
 }, {
     timestamps: true,

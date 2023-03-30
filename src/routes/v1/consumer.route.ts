@@ -1,11 +1,11 @@
-import { companyController } from '@controllers';
+import { consumerController } from '@controllers';
 import asyncRouter from '@utils/asyncRouter';
 import express from 'express';
 
 const router = asyncRouter(express.Router());
 
 router.route('/')
-    .get(companyController.getCompanies)
+    .get(consumerController.getConsumers)
     
 
 export default router;

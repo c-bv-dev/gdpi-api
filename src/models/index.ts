@@ -1,16 +1,25 @@
 import sequelize from '@/config/db';
-import Assets from './assets.model';
-import Company from './company.model';
+import Asset from './asset.model';
+import Consumer from './consumer.model';
+import Ticket from './ticket.model';
 import User from './user.model';
 
 let db: any = {};
 db.User = User;
-db.Company = Company;
-db.Assets = Assets;
+db.Consumer = Consumer;
+db.Asset = Asset;
+db.Ticket = Ticket;
 
 // Associations
-db.Company.hasMany(db.Assets);
-db.Assets.belongsTo(db.Company);
+db.Consumer.hasMany(db.Asset);
+db.Asset.belongsTo(db.Consumer);
+
+db.Asset.hasMany(db.Ticket);
+db.Ticket.belongsTo(db.Asset);
+
+db.Consumer.hasMany(db.Ticket);
+db.Ticket.belongsTo(db.Consumer);
+
 
 db.sequelize = sequelize;
 

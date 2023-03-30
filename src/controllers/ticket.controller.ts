@@ -1,4 +1,4 @@
-import companyService from '@/services/company.service';
+import ticketService from '@/services/ticket.service';
 import pick from '@utils/pick';
 import { Request, Response } from 'express';
 
@@ -7,9 +7,9 @@ import { Request, Response } from 'express';
 //     res.status(httpStatus.CREATED).send(user);
 // };
 
-const getCompanies = async (req: Request, res: Response) => {
+const getTickets = async (req: Request, res: Response) => {
     const filter = pick(req.query, ['firstName', 'lastName', 'email']);
-    const companies = await companyService.getCompanies(filter);
+    const companies = await ticketService.getCompanies(filter);
     res.send(companies);
 };
 
@@ -31,7 +31,7 @@ const getCompanies = async (req: Request, res: Response) => {
 
 export default {
     // createUser,
-    getCompanies,
+    getTickets,
     // getUser,
     // updateUser,
     // deleteUser

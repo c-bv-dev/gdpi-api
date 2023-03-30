@@ -1,7 +1,7 @@
 import sequelize from '@/config/db';
 import { DataTypes, Model } from 'sequelize';
 
-export interface ICompanyAttributes {
+export interface IConsumerAttributes {
     name: string;
     address: string;
     city: string;
@@ -11,9 +11,9 @@ export interface ICompanyAttributes {
     email: string;
 };
 
-export interface ICompanyModel extends Model<ICompanyAttributes>, ICompanyAttributes { };
+export interface IConsumerModel extends Model<IConsumerAttributes>, IConsumerAttributes { };
 
-const Company = sequelize.define<ICompanyModel>('Company', {
+const Consumer = sequelize.define<IConsumerModel>('Consumer', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -59,4 +59,4 @@ const Company = sequelize.define<ICompanyModel>('Company', {
     }
 });
 
-export default Company;
+export default Consumer;
