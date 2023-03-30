@@ -8,7 +8,7 @@ const createConsumer = async (req: Request, res: Response) => {
 };
 
 const getConsumers = async (req: Request, res: Response) => {
-    const filter = pick(req.query, ['firstName', 'lastName', 'email']);
+    const filter = pick(req.query, ['name', 'email']);
     const Consumers = await consumerService.getConsumers(filter);
     res.send(Consumers);
 };

@@ -4,9 +4,7 @@ import ApiError from '@/utils/ApiError';
 import httpStatus from 'http-status';
 
 const getConsumers = async (filter: any) => {
-    return await Consumer.findByPk(1, {
-        include: [db.Assets],
-    });
+    return await Consumer.findAll(filter);
 };
 
 const getConsumer = async (id: string) => {

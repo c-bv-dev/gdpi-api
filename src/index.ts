@@ -11,7 +11,6 @@ const exitHandler = () => {
 };
 
 const unexpectedErrorHandler = (error: Error) => {
-    console.log('🚩', error);
     logger.error(error);
     exitHandler();
 };
