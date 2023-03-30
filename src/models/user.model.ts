@@ -9,7 +9,7 @@ export interface IUserAttributes {
     email: string;
     password: string;
     role: IRole;
-    level: ILevel;
+    level?: ILevel;
 };
 
 export interface IUserModel extends Model<IUserAttributes>, IUserAttributes {
@@ -49,7 +49,7 @@ const User = sequelize.define<IUserModel>('User', {
     },
     level: {
         type: DataTypes.ENUM<ILevel>('1', '2', '3'),
-        defaultValue: 1
+        defaultValue: '1'
     }
 }, {
     timestamps: true,

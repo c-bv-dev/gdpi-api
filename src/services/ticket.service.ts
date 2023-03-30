@@ -1,13 +1,37 @@
-import db from '@/models';
-import Consumer from '@/models/consumer.model';
+import Ticket from '@/models/ticket.model';
+import ApiError from '@/utils/ApiError';
+import httpStatus from 'http-status';
 
-const getCompanies = async (filter: any) => {
-    return await Consumer.findByPk(1, {
-        include: [db.Assets],
-    });
+const getTickets = async (filter: any) => {
+    return await Ticket.findAll(filter);
 };
 
+const getTicket = async (id: string) => {
+    return await Ticket.findByPk(id);
+};
+
+const createTicket = async (ticketBody: any) => {
+    return await Ticket.create(ticketBody);
+};
+
+const updateTicket = async (id: string, updateBody: any) => {
+    const ticket = await getTicket(id);
+    if (!ticket) throw new ApiError(httpStatus.NOT_FOUND, 'Ticket not found');
+    Object.assign(ticket, updateBody);
+    await ticket.save();
+    return ticket;
+};
+
+const deleteTicket = async (id: string) => {
+    const ticket = await getTicket(id);
+    if (!ticket) throw new ApiError(httpStatus.NOT_FOUND, 'Ticket not found');
+    return await ticket.destroy();
+};
 
 export default {
-    getCompanies,
+    getTickets,
+    getTicket,
+    createTicket,
+    updateTicket,
+    deleteTicket
 };

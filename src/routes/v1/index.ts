@@ -2,6 +2,7 @@ import config from '@config/config';
 import express from 'express';
 import authRoute from './auth.route';
 import consumerRoute from './consumer.route';
+import ticketRoute from './ticket.route';
 import docsRoute from './docs.route';
 import userRoute from './user.route';
 
@@ -19,7 +20,11 @@ const defaultRoutes = [
     {
         path: '/consumer',
         route: consumerRoute
-    }
+    },
+    {
+        path: '/ticket',
+        route: ticketRoute
+    },
 ];
 
 const devRoutes = [

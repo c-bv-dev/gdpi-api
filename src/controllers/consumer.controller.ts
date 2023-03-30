@@ -2,10 +2,10 @@ import consumerService from '@/services/consumer.service';
 import pick from '@utils/pick';
 import { Request, Response } from 'express';
 
-// const createUser = async (req: Request, res: Response) => {
-//     const user = await userService.createUser(req.body);
-//     res.status(httpStatus.CREATED).send(user);
-// };
+const createConsumer = async (req: Request, res: Response) => {
+    const consumer = await consumerService.createConsumer(req.body);
+    res.status(201).send(consumer);
+};
 
 const getConsumers = async (req: Request, res: Response) => {
     const filter = pick(req.query, ['firstName', 'lastName', 'email']);
@@ -13,26 +13,25 @@ const getConsumers = async (req: Request, res: Response) => {
     res.send(Consumers);
 };
 
-// const getUser = async (req: IRequest, res: Response) => {
-//     const user = await userService.getUserById(req.params.id);
-//     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-//     res.send(user);
-// };
+const getConsumer = async (req: Request, res: Response) => {
+    const consumer = await consumerService.getConsumer(req.params.id);
+    res.send(consumer);
+};
 
-// const updateUser = async (req: IRequest, res: Response) => {
-//     const user = await userService.updateUserById(req.params.id, req.body);
-//     res.send(user);
-// };
+const updateConsumer = async (req: Request, res: Response) => {
+    const consumer = await consumerService.updateConsumer(req.params.id, req.body);
+    res.send(consumer);
+};
 
-// const deleteUser = async (req: IRequest, res: Response) => {
-//     await userService.deleteUserById(req.params.id);
-//     res.status(httpStatus.OK).send();
-// };
+const deleteConsumer = async (req: Request, res: Response) => {
+    await consumerService.deleteConsumer(req.params.id);
+    res.status(204).send();
+};
 
 export default {
-    // createUser,
     getConsumers,
-    // getUser,
-    // updateUser,
-    // deleteUser
+    getConsumer,
+    createConsumer,
+    updateConsumer,
+    deleteConsumer
 };
