@@ -73,10 +73,8 @@ const User = sequelize.define<IUserModel>('User', {
         }
     },
     hooks: {
-        // save in table logs the timestamps when a user is deleted
         beforeDestroy: async (user: IUserModel): Promise<void> => {
             const { firstName, lastName, email, role, level } = user.noPassword();
-            console.log('🚩', firstName);
             await db.Log.create({
                 message: `User ${firstName} ${lastName} with email ${email} and role ${role} and level ${level} was deleted`
             });
